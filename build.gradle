@@ -28,7 +28,9 @@ dependencies {
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	      implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    include implementation("com.alphacephei:vosk:0.3.45")
+    include implementation("net.java.dev.jna:jna:5.13.0")
 }
 
 processResources {
