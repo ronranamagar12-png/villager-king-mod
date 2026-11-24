@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "com.villagerking.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["VillagerBrainMixin"],
+  "injectors": { "defaultRequire": 1 }
+}

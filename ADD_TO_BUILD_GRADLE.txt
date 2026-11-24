@@ -1,0 +1,9 @@
+1) In build.gradle, inside dependencies { ... } add these two lines:
+
+    include implementation("com.alphacephei:vosk:0.3.45")
+    include implementation("net.java.dev.jna:jna:5.13.0")
+
+2) Because the voice code is in src/client, your project must have a client source set.
+   The fabricmc.net/develop template has a checkbox: "Split client and common sources". Tick it.
+   (If your project does not split sources, just move the 3 files from src/client/java
+    into src/main/java, same package folders.)

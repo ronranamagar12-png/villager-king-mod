@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "villagerking",
+  "version": "1.0.0",
+  "name": "Villager King",
+  "description": "You are the king. Villagers obey your voice, and work on their own.",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.villagerking.VillagerKingMod"],
+    "client": ["com.villagerking.voice.VoiceKingClient"]
+  },
+  "mixins": ["villagerking.mixins.json"],
+  "depends": { "fabricloader": "*", "fabric-api": "*" }
+}
