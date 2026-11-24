@@ -8,7 +8,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.item.Item;
@@ -76,15 +75,16 @@ public class VillagerCommander {
                 if (++popTimer >= 6 && all.size() < MAX_POP) {
                     popTimer = 0;
                     BlockPos p = king.blockPosition().offset(RNG.nextInt(11) - 5, 0, RNG.nextInt(11) - 5);
-                    EntityType.VILLAGER.spawn(level, p, EntitySpawnReason.MOB_SUMMONED);
+                    if (!all.isEmpty()) all.get(0).getType().spawn(level, p, EntitySpawnReason.MOB_SUMMONED);
                 }
             }
         });
     }
 
     static boolean isOre(BlockState s) {
-        return s.is(BlockTags.DIAMOND_ORES) || s.is(BlockTags.IRON_ORES)
-            || s.is(BlockTags.COAL_ORES) || s.is(BlockTags.GOLD_ORES);
+        return s.is(Blocks.DIAMOND_ORE) || s.is(Blocks.DEEPSLATE_DIAMOND_ORE)
+            || s.is(Blocks.COAL_ORE) || s.is(Blocks.DEEPSLATE_COAL_ORE)
+            || s.is(BlockTags.IRON_ORES) || s.is(BlockTags.GOLD_ORES);
     }
 
     static boolean isRipeCrop(BlockState s) {
