@@ -1,7 +1,7 @@
 package com.villagerking.mixin;
 
 import com.villagerking.VillagerCommander;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

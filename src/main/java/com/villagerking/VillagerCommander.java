@@ -10,7 +10,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -114,7 +114,7 @@ public class VillagerCommander {
         if (mobs.isEmpty()) { if (v.distanceTo(king) > 5) go(v, king.blockPosition()); return; }
         Monster t = mobs.get(0);
         go(v, t.blockPosition());
-        if (v.distanceTo(t) < 2.5) t.hurt(level.damageSources().mobAttack(v), 6f);
+        if (v.distanceTo(t) < 2.5) t.hurtServer(level, level.damageSources().mobAttack(v), 6f);
     }
 
     /** Breaks the nearest matching block; drops go into a chest near the king (or on the ground). */
@@ -200,7 +200,6 @@ public class VillagerCommander {
                     BlockState s = (h == 3 || (edge && !door)) ? wall : air;
                     castleQueue.add(new Object[]{o.offset(i, h, j), s});
                 }
-        castleQueue.add(new Object[]{o.offset(1, 0, 1), Blocks.RED_BED.defaultBlockState()});
     }
 
     /** Builders walk toward the next block and place a few per pass. */

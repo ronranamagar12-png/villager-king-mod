@@ -2,7 +2,7 @@ package com.villagerking.voice;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -19,7 +19,7 @@ public class VoiceKingClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         // NOTE: if the KeyMapping constructor shows an error in your version, see README.
-        KeyMapping voiceKey = KeyBindingHelper.registerKeyBinding(
+        KeyMapping voiceKey = KeyMappingHelper.registerKeyMapping(
                 new KeyMapping("key.villagerking.voice", InputConstants.KEY_V, KeyMapping.Category.MISC));
 
         Path modelDir = FabricLoader.getInstance().getGameDir().resolve("villager_king").resolve("model");
@@ -36,7 +36,7 @@ public class VoiceKingClient implements ClientModInitializer {
                     mc.player.displayClientMessage(Component.literal(
                             "Voice model not found. Put it in .minecraft/villager_king/model"), false);
                 } else {
-                    mc.player.displayClientMessage(Component.literal("Listening, my king..."), true);
+                    mc.player.sendSystemMessage(Component.literal("Listening, my king..."));
                     listener.start(text -> mc.execute(() -> handle(mc, text)));
                 }
             } else if (!down && wasDown && listener != null) {
@@ -50,10 +50,10 @@ public class VoiceKingClient implements ClientModInitializer {
         if (mc.player == null) return;
         String cmd = VoiceCommandParser.parse(said);
         if (cmd == null) {
-            mc.player.displayClientMessage(Component.literal("I heard \"" + said + "\" but no order matched."), false);
+            mc.player.sendSystemMessage(Component.literal("I heard \"" + said + "\" but no order matched."));
             return;
         }
-        mc.player.displayClientMessage(Component.literal("You said: " + said), false);
+        mc.player.sendSystemMessage(Component.literal("You said: " + said));
         mc.player.connection.sendCommand("king " + cmd);   // runs the same /king command
     }
 }
