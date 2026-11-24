@@ -33,8 +33,8 @@ public class VoiceKingClient implements ClientModInitializer {
             boolean down = voiceKey.isDown();
             if (down && !wasDown) {
                 if (listener == null) {
-                    mc.player.displayClientMessage(Component.literal(
-                            "Voice model not found. Put it in .minecraft/villager_king/model"), false);
+                    mc.player.sendSystemMessage(Component.literal(
+                            "Voice model not found. Put it in .minecraft/villager_king/model"));
                 } else {
                     mc.player.sendSystemMessage(Component.literal("Listening, my king..."));
                     listener.start(text -> mc.execute(() -> handle(mc, text)));
